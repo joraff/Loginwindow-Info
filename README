@@ -1,0 +1,11 @@
+Although I'm not at liberty to say definitely (yet) .... There may or may not be a future release of OS X that may or may not have a new loginwindow which does not have the AdminHostInfo functionality (the click-to-toggle info bit with system version, IP address, DDStatus, S/N, etc...).
+
+I put together something really fast to replicate this just in case Apple doesn't add this back in before the 10.7 gold master ships. For computer labs and kiosks, I don't print stickers with the computer names on them. I had relied on setting this area of the loginwindow to the computer name so patrons would see it when the tried to log in (if the computer won't even turn on, there was an asset code on the back that they could give me). It was also very useful when troubleshooting login issues over-the-phone, as they could give me lots of useful information.
+
+I'm glad that this utility was pretty easy to put together... It's based on some sample Apple code, actually - PreLoginAgentCocoa - which uses a launchd feature of restricting an application's trigger to specific session types. In this case, the session type was LoginWindow. I modified the window styling to make it invisible and the text to appear inset just like the rest of the 10.7 loginwindow text.
+
+The first release shows the computername, system version & build, IP addresses (will show all external IPv4 addresses), and serial number. I used the directory status pretty often in 10.5-10.6, so I'll work on replicating that next. I'm happy with showing all the information at once, but may make a version that replicates the click-toggle to scroll through the information. I also had the idea to make the information contexts plugins or modules, so someone could write any code to produce what they want to display, but that's some work and is far-far off. For now, just edit the source code and roll your own :)
+
+You can download the latest installer from: http://dl.dropbox.com/u/961914/LoginwindowInfo.dmg
+
+If you decide to edit the code, be sure to install the launchagent plist to /Library/LaunchAgents. By default, it looks for the application in /Library/PrivilegedHelperTools. Careful when adding your own code - this app will run as root.
